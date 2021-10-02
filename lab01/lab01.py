@@ -11,6 +11,15 @@ def falling(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
+    result = 1
+    min = n - k
+
+    while n > min:
+        result = n * result
+        n = n - 1
+
+    return result
+
 
 
 def sum_digits(y):
@@ -27,6 +36,13 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
+    result = 0
+    while y > 0:
+        quotient = y // 10
+        remainder = y % 10
+        y = quotient
+        result = result + remainder
+    return result
 
 
 def double_eights(n):
@@ -45,3 +61,44 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
+
+# WWPD Exercises (What Would Python Display)
+def xk(c, d):
+    """
+    Fill in the output
+    >>> xk(10, 10)
+    23
+    >>> xk(10, 6)
+    23
+    >>> xk(4, 6)
+    17
+    >>> xk(0, 0)
+    25
+    """
+    if c == 3:
+        return 6
+    elif d >= 4:
+        return 6 + 7 + c
+    else:
+        return 25
+
+def how_big(x):
+    """
+    Fill in the output
+    >>> how_big(7)
+    'big'
+    >>> how_big(12)
+    huge
+    >>> how_big(1)
+    small
+    >>> how_big(-1)
+    nothin
+    """
+    if x > 10:
+        print('huge')
+    elif x > 5:
+        return 'big'
+    elif x > 0:
+        print('small')
+    else:
+        print('nothin')
