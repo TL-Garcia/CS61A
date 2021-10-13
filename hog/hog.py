@@ -75,7 +75,25 @@ def take_turn(num_rolls, opponent_score, dice=six_sided, goal=GOAL_SCORE):
     assert opponent_score < goal, 'The game should be over.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return piggy_points(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
+
+def get_min_and_max_digits(number):
+    remainder = number
+    min_digit = number
+    max_digit = 0
+
+    while remainder > 0:
+        digit = remainder % 10
+        min_digit = min(digit, min_digit)
+        max_digit = max(digit, max_digit)
+
+        remainder //= 10
+
+    return min_digit, max_digit
 
 
 def more_boar(player_score, opponent_score):
@@ -97,6 +115,11 @@ def more_boar(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    min_player, max_player = get_min_and_max_digits(player_score)
+    min_opponent, max_opponent = get_min_and_max_digits(opponent_score)
+
+    return min_player < min_opponent and max_player > max_opponent
+
     # END PROBLEM 4
 
 
@@ -136,6 +159,16 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    num_dice0, num_dice1 = strategy0, strategy1
+    score0 += take_turn(num_dice0)
+
+    if score0 >= goal:
+        return score0, score1
+
+    score1 += take_turn(num_dice1)
+    if score1 >= goal:
+        return score0, score1
+
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
