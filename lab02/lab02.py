@@ -15,7 +15,7 @@ def lambda_curry2(func):
     3
     """
     "*** YOUR CODE HERE ***"
-    return ______
+    return lambda x: lambda y: func(x, y)
 
 
 def count_cond(condition):
@@ -40,12 +40,21 @@ def count_cond(condition):
     2
     >>> count_primes(4)    # 2, 3
     2
-    >>> count_primes(5)    # 2, 3, 5
-    3
     >>> count_primes(20)   # 2, 3, 5, 7, 11, 13, 17, 19
     8
     """
     "*** YOUR CODE HERE ***"
+    def apply_cond(n):
+        count = 0
+        index = 1
+        while index <= n:
+            if condition(n, index):
+                count +=1
+
+            index += 1
+        return count
+
+    return apply_cond
 
 
 def compose1(f, g):
@@ -81,6 +90,9 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
+    f_of_g = compose1(f, g)
+    g_of_f = compose1(g, f)
+    return lambda x: f_of_g(x) == g_of_f(x)
 
 
 def cycle(f1, f2, f3):
