@@ -159,8 +159,13 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
-    num_dice0, num_dice1 = strategy0, strategy1
-    score0 += take_turn(num_dice0)
+    def play_player0():
+       num_dice0 = strategy0()
+       return score0 + take_turn(num_dice0)
+
+    def play_player1():
+       num_dice1 = strategy1()
+       return score1 + take_turn(num_dice1)
 
     if score0 >= goal:
         return score0, score1
