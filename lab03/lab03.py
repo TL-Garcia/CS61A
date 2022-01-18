@@ -1,5 +1,5 @@
-HW_SOURCE_FILE = __file__
 from functools import reduce
+HW_SOURCE_FILE = __file__
 
 
 def summation(n, term):
@@ -25,8 +25,6 @@ def summation(n, term):
         return term(n)
     else:
         return summation(n - 1, term) + term(n)
-
-
 
 
 def generate_pascal_triangle(n):
@@ -57,6 +55,7 @@ def generate_pascal_triangle(n):
 
     return triangle
 
+
 def pretty_print_pascal_triangle(triangle):
     for row in triangle:
         pretty_row = reduce(lambda acc, val:  acc + str(val), row, '')
@@ -83,6 +82,7 @@ def pascal(j, i):
     else:
         return pascal(j - 1, i) + pascal(j - 1, i - 1)
 
+
 def paths(m, n):
     """Return the number of paths from one corner of an
     M by N grid to the opposite corner.
@@ -97,3 +97,18 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+
+    def take_step(x, y):
+        if x >= m or y >= n:
+            return 0
+        elif x == m - 1 and y == n - 1:
+            return 1
+        else:
+            goes_up = take_step(x, y + 1)
+            goes_right = take_step(x + 1, y)
+            return goes_up + goes_right
+
+    return take_step(0, 0)
+
+
+paths(2, 2)
