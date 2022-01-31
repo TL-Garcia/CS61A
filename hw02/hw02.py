@@ -12,6 +12,7 @@ def triple(x): return 3 * x
 
 def increment(x): return x + 1
 
+
 def decrement(x): return x - 1
 
 
@@ -80,8 +81,6 @@ def num_eights(pos):
         return num_eights(pos % 10) + num_eights(pos // 10)
 
 
-
-
 def pingpong(n):
     """Return the nth element of the ping-pong sequence.
 
@@ -130,6 +129,7 @@ def pingpong(n):
                 return inner(operation(x), k + 1, operation)
     return inner(1, 1, increment)
 
+
 def missing_digits(n):
     """Given a number a that is in sorted, increasing order,
     return the number of missing digits in n. A missing digit is
@@ -159,7 +159,6 @@ def missing_digits(n):
     True
     """
     "*** YOUR CODE HERE ***"
-    def inner(k, missing):
 
 
 def get_next_coin(coin):
@@ -196,6 +195,17 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    def inner(value, coin):
+        if value < 0 or coin == None:
+            return 0
+        elif value == 0:
+            return 1
+        else:
+            return inner(value - coin, coin) + inner(value, get_next_coin(coin))
+
+    return inner(change, 1)
+
+
 
 
 def zero(f):
